@@ -5,6 +5,10 @@
     <title>テスト</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@next"></script>
     <script>
 
@@ -13,20 +17,137 @@
 </head>
 
 <body>
+    <a href="next.html">Next</a>
 
-    <div id="counter">
-        Counter: {{ counter }}
-    </div>
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2>
+                    VSCodeショートカット
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" id="content">
+                <test-component v-for="(data_content, index) in data_contents" :item="data_content.item"
+                    :item_value="data_content.item_value"></test-component>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div class="container-sm">
+        <div class="accordion" id="content">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="vscode-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#vscode-body" aria-expanded="true" aria-controls="vscode-body">
+                        VSCodeショートカット
+                    </button>
+                </h2>
+                <div id="vscode-body" class="accordion-collapse collapse" aria-labelledby="vscode-header">
+                    <div class="accordion-body">
+                        <test-component v-for="vs_code_shortcut in vs_code_shortcuts" :item="vs_code_shortcut.item"
+                            :item_value="vs_code_shortcut.item_value"></test-component>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="vi-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#vi-body" aria-expanded="true" aria-controls="vi-body">
+                        viチートシート
+                    </button>
+                </h2>
+                <div id="vi-body" class="accordion-collapse collapse" aria-labelledby="vi-header">
+                    <div class="accordion-body">
+                        <test-component v-for="vi_cheat_code in vi_cheat_sheet" :item="vi_cheat_code.item"
+                            :item_value="vi_cheat_code.item_value"></test-component>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <accordion-component content="vscode" shotcuts="vscode_shotcuts"></accordion-component>
 
     <script>
-        const Counter = {
+        const app = Vue.createApp({
             data() {
                 return {
-                    counter: 0
+                    vscode_shortcuts: [
+                        {
+                            item: "Ctrl+Shift+P, F1",
+                            item_value: "コマンドパレットの表示"
+                        },
+                        {
+                            item: "Ctrl+P",
+                            item_value: "ファイルに移動"
+                        },
+                        {
+                            item: "Ctrl+Shift+N",
+                            item_value: "新しいウィンドウ"
+                        },
+                        {
+                            item: "Ctrl+Shift+W",
+                            item_value: "ウィンドウを閉じる"
+                        }
+                    ],
+                    vi_cheat_sheet: [
+                        {
+                            item: "h",
+                            item_value: "左に移動"
+                        },
+                        {
+                            item: "j",
+                            item_value: "下に移動"
+                        },
+                        {
+                            item: "k",
+                            item_value: "上に移動"
+                        },
+                        {
+                            item: "l",
+                            item_value: "右に移動"
+                        }
+                    ]
                 }
             }
-        }
-        Vue.createApp(Counter).mount("#counter")
+        })
+        // app.component("test-component", {
+        //     props: [
+        //         'item',
+        //         'item_value'
+        //     ],
+        //     template: `
+        //         <div class="row border-bottom m-2">
+        //             <div class="col-4 fw-bold">{{ item }}</div>
+        //             <div class="col">{{ item_value }}</div>
+        //         </div>
+        //     `
+        // });
+
+        app.component("accordion-component", {
+            props: [
+                'content',
+                'shotcuts'
+            ],
+            template: `
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="{{content}}-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#{{content}}-body" aria-expanded="true" aria-controls="{{content}}-body">
+                        VSCodeショートカット
+                    </button>
+                </h2>
+                <div id="{{content}}-body" class="accordion-collapse collapse" aria-labelledby="{{content}}-header">
+                    <div class="accordion-body">
+                        <test-component v-for="shotcut in shotcuts" :item="shotcut.item"
+                            :item_value="shotcut.item_value"></test-component>
+                    </div>
+                </div>
+            </div>
+            `
+        })
+        app.mount("#content")
     </script>
 </body>
 
