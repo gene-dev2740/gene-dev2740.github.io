@@ -5,32 +5,29 @@
     <title>テスト</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@next"></script>
     <script>
-        $(function() {
-            $('#btn_test').on('click', () => {
-                download_txt('new_text.txt', 'a');
-            });
-        });
-        function download_txt(file_name, data) {
-            const blob = new Blob([data], {type: 'text/plain'});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            document.body.appendChild(a);
-            a.download = file_name;
-            a.href = url;
-            a.click();
-            a.remove();
-            URL.revokeObjectURL(url);
-        }
+
     </script>
 
 </head>
 
 <body>
-    <h1>これはテストページです</h1>
-    <button class="btn btn-primary m-3" id="btn_test">TEST</button>
 
+    <div id="counter">
+        Counter: {{ counter }}
+    </div>
+
+    <script>
+        const Counter = {
+            data() {
+                return {
+                    counter: 0
+                }
+            }
+        }
+        Vue.createApp(Counter).mount("#counter")
+    </script>
 </body>
 
 </html>
