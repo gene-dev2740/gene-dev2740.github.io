@@ -5,7 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
@@ -24,6 +28,10 @@
             <div class="col">
                 <div class="row">
                     <div class="form-check form-switch">
+                        <input type="checkbox" id="chk_choose_one" class="form-check-input" role="switch">
+                        <label class="form-check-label" for="chk_choose_one">choose one person</label>
+                    </div>
+                    <div class="form-check form-switch">
                         <input type="checkbox" id="chk_empire_top" class="form-check-input" role="switch">
                         <label class="form-check-label" for="chk_empire_top">Empire is Top</label>
                     </div>
@@ -38,11 +46,12 @@
         </div>
         <div class="row mb-3 mt-3">
             <div class="col-3 border rounded me-2">
-                <h2>メンバー</h2>
+                <h2 class="mt-3">メンバー</h2>
                 <textarea id="txt_names" rows="6" class="form-control mb-3"></textarea>
             </div>
             <div class="col-8 border rounded">
-                <h2>ランキング！ </h2>
+                <!-- <h2>2代目エンパイア </h2> -->
+                <input type="text" class="form-control form-control-lg mt-3" placeholder="タイトルを入力">
                 <div id="div_result">
                     <ol id="ol_members" class="list-group list-group-numbered m-3">
                     </ol>
@@ -50,6 +59,8 @@
             </div>
         </div>
         <div class="row">
+            <div class="col text-info fs-1 text-center" id="div_result_msg">
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
